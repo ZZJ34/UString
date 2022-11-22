@@ -133,7 +133,7 @@ If you have any questions, please feel free to leave issues in this repo or cont
 
 2022 再次使用 修改当前的环境依赖
 
-服务器环境 `CUDA=11.7.99`, `NV driver=515.65.01`, `Pytorch=1.13`, `python=3.8`
+服务器环境 `CUDA=11.7.99`, `cuDNN=8.6.0`,`NV driver=515.65.01`, `Pytorch=1.13`, `Python=3.8`
 
 只建立一个环境，并且更新 requirements.txt 中的依赖版本，取消 pytorch 和 mmlab 依赖的安装
 
