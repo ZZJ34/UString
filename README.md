@@ -55,7 +55,7 @@ pip install -r requirements.txt
 
 ### 2. Setup MMDetection Environment (Optional)
 
-If you need to use mmdetection for training and testing Cascade R-CNN models, you may need to setup an mmdetection environment separately such as `mmlab`. Please follow the [official mmdetection installation guide](https://github.com/open-mmlab/mmdetection/blob/master/docs/install.md).
+If you need to use mmdetection for training and testing Cascade R-CNN models, you may need to setup an mmdetection environment separately such as `mmlab`. Please follow the [official mmdetection installation guide](https://mmdetection.readthedocs.io/en/stable/get_started.html).
 ```shell
 # create python environment
 conda create -n mmlab python=3.7
@@ -128,3 +128,13 @@ Please cite our paper if you find our code useful.
 ```
 
 If you have any questions, please feel free to leave issues in this repo or contact [Wentao Bao](mailto:wb6219@rit.edu) by email. Note that part of codes in `src/` are referred from [VGRNN](https://github.com/VGraphRNN/VGRNN) project.
+
+---
+
+2022 再次使用 修改当前的环境依赖
+
+服务器环境 `CUDA=11.7.99`, `NV driver=515.65.01`, `Pytorch=1.13`, `python=3.8`
+
+只建立一个环境，并且更新 requirements.txt 中的依赖版本，取消 pytorch 和 mmlab 依赖的安装
+
+
