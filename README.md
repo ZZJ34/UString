@@ -61,6 +61,19 @@ pip install -r requirements.txt
 # intsall Pytorch (2022.11 Pytorch=1.13[stable] with CUDA=11.7)
 pip3 install torch torchvision torchaudio
 
+# install MMDetection (https://mmdetection.readthedocs.io/en/stable/get_started.html)
+# Install MMCV
+pip install -U openmim
+mim install mmcv-full
+
+# Install MMDetection
+git clone https://github.com/open-mmlab/mmdetection.git
+cd mmdetection
+cp -r ../lib/Cascade\ R-CNN/* ./  # copy the downloaded Cascade R-CNN into mmdetection folder
+
+# compile & install
+pip install -v -e .
+python setup.py install
 
 ```
 

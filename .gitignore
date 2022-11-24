@@ -13,3 +13,4 @@ data/mmdetection*
 *.mp4
 *_tmp*
 lib/*
+mmdetection/*
