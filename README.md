@@ -57,6 +57,10 @@ conda activate UString
 # install dependencies (MMDetection and Pytorch are NOT included)
 pip install -r requirements.txt
 
+# intsall Pytorch (2022.11 Pytorch=1.13[stable] with CUDA=11.7)
+
+pip3 install torch torchvision torchaudio
+
 
 ```
 
