@@ -44,6 +44,8 @@ Choose the following files according to your need.
 
 **Note**: 服务器环境 `CUDA=11.7.99`, `cuDNN=8.6.0`, `Nvidia GPU Driver=515.65.01`
 
+Please follow the [official mmdetection installation guide](https://mmdetection.readthedocs.io/en/stable/get_started.html) to setup an mmdetection environment.
+
 ### 1. Setup Python & MMDetection Environment (ZZJ)
 
 ```shell
@@ -58,7 +60,6 @@ conda activate UString
 pip install -r requirements.txt
 
 # intsall Pytorch (2022.11 Pytorch=1.13[stable] with CUDA=11.7)
-
 pip3 install torch torchvision torchaudio
 
 
