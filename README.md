@@ -24,9 +24,9 @@ We propose an uncertainty-based traffic accident anticipation model for dashboar
 
 The code currently supports three datasets., DAD, A3D, and CCD. These datasets need to be prepared under the folder `data/`. 
 
-> * For CCD dataset, please refer to the [CarCrashDataset](https://github.com/Cogito2012/CarCrashDataset) repo for downloading and deployment. 
-> * For DAD dataset, you can acquire it from [DAD official](https://github.com/smallcorgi/Anticipating-Accidents). The officially provided features are grouped into batches while it is more standard to split them into separate files for training and testing. To this end, you can use the script `./script/split_dad.py`. 
-> * For A3D dataset, the annotations and videos are obtained from [A3D official](https://github.com/MoonBlvd/tad-IROS2019). Since it is sophiscated to process it for traffic accident anticipation with the same setting as DAD, you can directly download our processed A3D dataset from Google Drive: [A3D processed](https://drive.google.com/drive/folders/1loK_Cr1UHZGJpetUIQCSI3NlBQWynK3v?usp=sharing).
+> * For CCD dataset under the folder `data/crash/`, please refer to the [CarCrashDataset](https://github.com/Cogito2012/CarCrashDataset) repo for downloading and deployment. 
+> * For DAD dataset under the folder `data/dad/`, you can acquire it from [DAD official](https://github.com/smallcorgi/Anticipating-Accidents). The officially provided features are grouped into batches while it is more standard to split them into separate files for training and testing. To this end, you can use the script `./script/split_dad.py`. 
+> * For A3D dataset under the folder `data/a3d/`, the annotations and videos are obtained from [A3D official](https://github.com/MoonBlvd/tad-IROS2019). Since it is sophiscated to process it for traffic accident anticipation with the same setting as DAD, you can directly download our processed A3D dataset from Google Drive: [A3D processed](https://drive.google.com/drive/folders/1loK_Cr1UHZGJpetUIQCSI3NlBQWynK3v?usp=sharing).
 
 <a name="models"></a>
 ## :file_cabinet:  Pre-trained Models
