@@ -43,6 +43,6 @@ def split_dad(data_path, dest_path):
     print('Testing samples: %d' % (len(test_list)))
 
 if __name__ == '__main__':
-    DAD_PATH = '/data/DAD/features'
-    DEST_PATH = '/data/DAD/features_split'
+    DAD_PATH = './data/dad/features'
+    DEST_PATH = './data/dad/features_split'
     split_dad(DAD_PATH, DEST_PATH)
