@@ -40,8 +40,6 @@ Choose the following files according to your need.
 ## :file_cabinet: Installation Guide
 
 
-**Note**: This repo currently does not support `CUDA>=10.2` environment, as the object detection API we used is no longer supported only by the latest `mmdetection`, and the `torch-geometry` lib we sued is dependent on `PyTorch=1.0`. We will release the support for the lastest CUDA and PyTorch. 
-
 **Note**: 服务器环境 `CUDA=11.7.99`, `cuDNN=8.6.0`, `Nvidia GPU Driver=515.65.01`
 
 Please follow the [official mmdetection installation guide](https://mmdetection.readthedocs.io/en/stable/get_started.html) to setup an mmdetection environment.
