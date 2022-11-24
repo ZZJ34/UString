@@ -39,6 +39,7 @@ Choose the following files according to your need.
 <a name="install"></a>
 ## :file_cabinet: Installation Guide
 
+**Note**: 在项目根目录执行所有代码
 
 **Note**: 服务器环境 `CUDA=11.7.99`, `cuDNN=8.6.0`, `Nvidia GPU Driver=515.65.01`
 
@@ -65,6 +66,8 @@ pip3 install torch torchvision torchaudio
 
 <a name="traintest"></a>
 ## :rocket: Train and Test
+
+**Note**: 在项目根目录执行所有代码
 
 ### 1. Demo
 
