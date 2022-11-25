@@ -2,7 +2,9 @@
 set -x
 set -e
 
-source activate py37
+# conda python environment setup (manually)
+# conda activate UString
+
 PHASE=$1
 GPUS=$2
 DATA=$3

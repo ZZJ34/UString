@@ -55,11 +55,14 @@ conda create -n UString python=3.8
 # activate environment
 conda activate UString
 
-# install dependencies (MMDetection and Pytorch are NOT included)
+# install dependencies (MMDetection, Pytorch and PyG are NOT included)
 pip install -r requirements.txt
 
 # intsall Pytorch (2022.11 Pytorch=1.13[stable] with CUDA=11.7)
 pip3 install torch torchvision torchaudio
+
+# intsall PyG (2022.11 Pytorch=1.13[stable] with CUDA=11.7)[https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html]
+pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-1.13.0+cu117.html
 
 # install MMDetection (https://mmdetection.readthedocs.io/en/stable/get_started.html)
 # Install MMCV
@@ -69,7 +72,6 @@ mim install mmcv-full
 # Install MMDetection
 git clone https://github.com/open-mmlab/mmdetection.git
 cd mmdetection
-cp -r ../lib/Cascade\ R-CNN/* ./  # copy the downloaded Cascade R-CNN into mmdetection folder
 
 # compile & install
 pip install -v -e .

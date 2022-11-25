@@ -338,7 +338,7 @@ if __name__ == '__main__':
 
     device = torch.device('cuda:'+str(p.gpu_id)) if torch.cuda.is_available() else torch.device('cpu')
     if p.task == 'extract_feature':
-        from mmdet.apis import init_detector, inference_detector, show_result
+        from mmdet.apis import init_detector, inference_detector
         import mmcv
         # init object detector
         cfg_file = osp.join(p.mmdetection, "configs/cascade_rcnn_x101_64x4d_fpn_1x_kitti2d.py")
