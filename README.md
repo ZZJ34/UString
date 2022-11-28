@@ -58,7 +58,7 @@ conda activate UString
 # install dependencies (MMDetection, Pytorch and PyG are NOT included)
 pip install -r requirements.txt
 
-# intsall Pytorch (2022.11 Pytorch=1.13[stable] with CUDA=11.7)
+# intsall Pytorch (2022.11 Pytorch=1.13[stable] with CUDA=11.7)[https://pytorch.org/get-started/locally/]
 pip3 install torch torchvision torchaudio
 
 # intsall PyG (2022.11 Pytorch=1.13[stable] with CUDA=11.7)[https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html]

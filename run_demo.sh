@@ -19,32 +19,32 @@ echo "Global info..."
 echo "Video : $VIDEO_FILENAME"
 echo "Dir : $DIR"
 
-# if [ ! -f "$RESULT_FILE" ]; then
-#     if [ ! -f "$FEAT_FILE" ]; then
-#         # feature extraction task
-#         echo "Run feature extraction..."
+if [ ! -f "$RESULT_FILE" ]; then
+    if [ ! -f "$FEAT_FILE" ]; then
+        # feature extraction task
+        echo "Run feature extraction..."
         
-#         CUDA_VISIBLE_DEVICES=$GPUS python demo.py \
-#             --video_file $VIDEO_PATH \
-#             --task extract_feature \
-#             --gpu_id $GPUS \
-#             --mmdetection lib/mmdetection
+        CUDA_VISIBLE_DEVICES=$GPUS python demo.py \
+            --video_file $VIDEO_PATH \
+            --task extract_feature \
+            --gpu_id $GPUS \
+            --mmdetection lib/mmdetection
         
 
-#         echo "Saved in: $FEAT_FILE"
-#     fi
+        echo "Saved in: $FEAT_FILE"
+    fi
 
-#     run inference
-#     echo "Run accident inference..."
+    # run inference
+    # echo "Run accident inference..."
    
-#     CUDA_VISIBLE_DEVICES=$GPUS python demo.py \
-#         --task inference \
-#         --feature_file $FEAT_FILE \
-#         --ckpt_file demo/final_model_ccd.pth \
-#         --gpu_id $GPUS
+    # CUDA_VISIBLE_DEVICES=$GPUS python demo.py \
+    #     --task inference \
+    #     --feature_file $FEAT_FILE \
+    #     --ckpt_file demo/final_model_ccd.pth \
+    #     --gpu_id $GPUS
     
-#     echo "Saved in: $RESULT_FILE"
-# fi
+    # echo "Saved in: $RESULT_FILE"
+fi
 
 # visualize
 # echo "Run result visualization..."

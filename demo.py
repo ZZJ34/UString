@@ -344,12 +344,12 @@ if __name__ == '__main__':
         cfg_file = osp.join(p.mmdetection, "configs/cascade_rcnn_x101_64x4d_fpn_1x_kitti2d.py")
         model_file = osp.join(p.mmdetection, "work_dirs/cascade_rcnn_x101_64x4d_fpn_1x_kitti2d/latest.pth")
         detector = init_detector(cfg_file, model_file, device=device)
-        # init feature extractor
-        feat_extractor = init_feature_extractor(backbone='vgg16', device=device)
-        # object detection & feature extraction
-        detections, features = extract_features(detector, feat_extractor, p.video_file, n_frames=p.n_frames)
-        feat_file = p.video_file[:-4] + '_feature.npz'
-        np.savez_compressed(feat_file, data=features, det=detections)
+        # # init feature extractor
+        # feat_extractor = init_feature_extractor(backbone='vgg16', device=device)
+        # # object detection & feature extraction
+        # detections, features = extract_features(detector, feat_extractor, p.video_file, n_frames=p.n_frames)
+        # feat_file = p.video_file[:-4] + '_feature.npz'
+        # np.savez_compressed(feat_file, data=features, det=detections)
     elif p.task == 'inference':
         from src.Models import UString
         # load feature file
