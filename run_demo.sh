@@ -15,7 +15,6 @@ FEAT_FILE="$DIR/$VID"_feature.npz
 RESULT_FILE="$DIR/$VID"_result.npz
 VIS_FILE="$DIR/$VID"_vis.avi
 
-echo "Global info..."
 echo "Video : $VIDEO_FILENAME"
 echo "Dir : $DIR"
 

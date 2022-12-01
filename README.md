@@ -34,7 +34,11 @@ The code currently supports three datasets., DAD, A3D, and CCD. These datasets n
 Choose the following files according to your need.
 
 > * [**Cascade R-CNN**](https://drive.google.com/drive/folders/1fbjKrzgXv_FobuIAS37k9beCkxYzVavi?usp=sharing): The pre-trained Cascade R-CNN model files and modified source files. Please download and extract them under `lib/mmdetection/`.
+> * *链接提供的 Cascade R-CNN 配置文件 config.py 与当前版本的 mmdetection(v2.26.0) 不兼容, 可以选择重新训练*
+
+
 > * [**Pre-trained UString Models**](https://drive.google.com/drive/folders/1yUJnxwDtn2JGDOf_weVMDOwywdkWULG2?usp=sharing): The pretrained model weights for testing and demo usages. Download them and put them anywhere you like.
+> * *链接提供了三个权重文件分别针对三个数据集, 不同数据集的权重似乎存在差异，不可以混用*
 
 <a name="install"></a>
 ## :file_cabinet: Installation Guide
@@ -48,7 +52,6 @@ Please follow the [official mmdetection installation guide](https://mmdetection.
 ### 1. Setup Python & MMDetection Environment (ZZJ)
 
 ```shell
-
 # create python environment
 conda create -n UString python=3.8
 
@@ -86,10 +89,12 @@ python setup.py install
 
 ### 1. Demo
 
-We provide an end-to-end demo to predict accident curves with given video. Note that before you run the following script, both the python and mmdetection environments above are needed. The following command is an example using the pretrained model on CCD dataset. The model file is placed at `demo/final_model_ccd.pth` by default.
+We provide an end-to-end demo to predict accident curves with given video. Note that before you run the following script, both the python and mmdetection environments above are needed. The following command is an example using the pretrained model on CCD dataset. 
+
+请在所有脚本中重新设定 UString 模型权重的位置
 
 ```shell
-bash run_demo.sh demo/000821.mp4
+bash run_demo.sh demo/000821.mp4 # 尚未验证通过 
 ```
 Results will be saved in the same folder `demo/`.
 
@@ -98,7 +103,7 @@ Results will be saved in the same folder `demo/`.
 Take the DAD dataset as an example, after the DAD dataset is correctly configured, run the following command. By default the model file is placed at `output/UString/vgg16/snapshot/final_model.pth`.
 ```shell
 # For dad dataset, use GPU_ID=0 and batch_size=10.
-bash run_train_test.sh test 0 dad 10
+bash run_train_test.sh test 0 dad 10 # 验证通过
 ```
 The evaluation results on test set will be reported, and visualization results will be saved in `output/UString/vgg16/test/`.
 
@@ -107,7 +112,7 @@ The evaluation results on test set will be reported, and visualization results w
 To train UString model from scratch, run the following commands for DAD dataset:
 ```shell
 # For dad dataset, use GPU_ID=0 and batch_size=10.
-bash run_train_test.sh train 0 dad 10
+bash run_train_test.sh train 0 dad 10 # 尚未验证
 ```
 By default, the snapshot of each checkpoint file will be saved in `output/UString/vgg16/snapshot/`.
 
@@ -128,13 +133,4 @@ Please cite our paper if you find our code useful.
 ```
 
 If you have any questions, please feel free to leave issues in this repo or contact [Wentao Bao](mailto:wb6219@rit.edu) by email. Note that part of codes in `src/` are referred from [VGRNN](https://github.com/VGraphRNN/VGRNN) project.
-
----
-
-2022 再次使用 修改当前的环境依赖
-
-服务器环境, `Pytorch=1.13`, `Python=3.8`
-
-只建立一个环境，并且更新 requirements.txt 中的依赖版本，取消 pytorch 和 mmlab 依赖的安装
-
 

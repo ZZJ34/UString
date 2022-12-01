@@ -15,6 +15,41 @@ import torch.nn.functional as F
 from src.BayesModels import BayesianLinear
 
 
+def scatter_(name, src, index, dim_size=None):
+    r"""Aggregates all values from the :attr:`src` tensor at the indices
+    specified in the :attr:`index` tensor along the first dimension.
+    If multiple indices reference the same location, their contributions
+    are aggregated according to :attr:`name` (either :obj:`"add"`,
+    :obj:`"mean"` or :obj:`"max"`).
+    Args:
+        name (string): The aggregation to use (:obj:`"add"`, :obj:`"mean"`,
+            :obj:`"max"`).
+        src (Tensor): The source tensor.
+        index (LongTensor): The indices of elements to scatter.
+        dim_size (int, optional): Automatically create output tensor with size
+            :attr:`dim_size` in the first dimension. If set to :attr:`None`, a
+            minimal sized output tensor is returned. (default: :obj:`None`)
+    :rtype: :class:`Tensor`
+    """
+
+    assert name in ['add', 'mean', 'max']
+
+    op = getattr(torch_scatter, 'scatter_{}'.format(name))
+
+    fill_value = -1e38 if name == 'max' else 0
+
+    out = op(src, index, 0, None, dim_size)
+    
+    if isinstance(out, tuple):
+        out = out[0]
+
+    if name == 'max':
+        out[out == fill_value] = 0
+
+    return out
+
+
+
 class MessagePassing(torch.nn.Module):
     r"""Base class for creating message passing layers
     .. math::
@@ -84,39 +119,6 @@ class MessagePassing(torch.nn.Module):
         which was initially passed to :meth:`propagate`."""
 
         return aggr_out
-
-
-
-def scatter_(name, src, index, dim_size=None):
-    r"""Aggregates all values from the :attr:`src` tensor at the indices
-    specified in the :attr:`index` tensor along the first dimension.
-    If multiple indices reference the same location, their contributions
-    are aggregated according to :attr:`name` (either :obj:`"add"`,
-    :obj:`"mean"` or :obj:`"max"`).
-    Args:
-        name (string): The aggregation to use (:obj:`"add"`, :obj:`"mean"`,
-            :obj:`"max"`).
-        src (Tensor): The source tensor.
-        index (LongTensor): The indices of elements to scatter.
-        dim_size (int, optional): Automatically create output tensor with size
-            :attr:`dim_size` in the first dimension. If set to :attr:`None`, a
-            minimal sized output tensor is returned. (default: :obj:`None`)
-    :rtype: :class:`Tensor`
-    """
-
-    assert name in ['add', 'mean', 'max']
-
-    op = getattr(torch_scatter, 'scatter_{}'.format(name))
-    fill_value = -1e38 if name is 'max' else 0
-
-    out = op(src, index, 0, None, dim_size, fill_value)
-    if isinstance(out, tuple):
-        out = out[0]
-
-    if name is 'max':
-        out[out == fill_value] = 0
-
-    return out
 
 
 # layers
@@ -209,7 +211,6 @@ class GCNConv(MessagePassing):
     def __repr__(self):
         return '{}({}, {})'.format(self.__class__.__name__, self.in_channels,
                                    self.out_channels)
-
 
 
 class Graph_GRU_GCN(nn.Module):
@@ -480,6 +481,7 @@ class UString(nn.Module):
 
         loss = torch.mean(torch.add(torch.mul(pos_loss, target[:, 1]), torch.mul(neg_loss, target[:, 0])))
         return loss
+
 
     def _uncertainty_ranking(self, output_dict, Ut, eU_only=True):
         """

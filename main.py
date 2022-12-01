@@ -125,7 +125,7 @@ def test_all_vis(testdata_loader, model, vis=True, multiGPU=False, device=torch.
             label_onehot = batch_ys.cpu().numpy()
             label = np.reshape(label_onehot[:, 1], [batch_size,])
             all_labels.append(label)
-            toas = np.squeeze(batch_toas.cpu().numpy()).astype(np.int)
+            toas = np.squeeze(batch_toas.cpu().numpy()).astype(np.int32)
             all_toas.append(toas)
             all_uncertains.append(pred_uncertains)
 
@@ -212,6 +212,17 @@ def load_checkpoint(model, optimizer=None, filename='checkpoint.pth.tar', isTrai
     return model, optimizer, start_epoch
 
 
+def update_final_model(src_file, dest_file):
+    # source file must exist
+    assert os.path.exists(src_file), "src file does not exist!"
+    # destinate file should be removed first if exists
+    if os.path.exists(dest_file):
+        if not os.path.samefile(src_file, dest_file):
+            os.remove(dest_file)
+    # copy file
+    shutil.copyfile(src_file, dest_file)
+
+# 训练
 def train_eval():
     ### --- CONFIG PATH ---
     data_path = os.path.join(ROOT_PATH, p.data_path, p.dataset)
@@ -324,18 +335,7 @@ def train_eval():
         write_weight_histograms(logger, model, k+1)
     logger.close()
 
-
-def update_final_model(src_file, dest_file):
-    # source file must exist
-    assert os.path.exists(src_file), "src file does not exist!"
-    # destinate file should be removed first if exists
-    if os.path.exists(dest_file):
-        if not os.path.samefile(src_file, dest_file):
-            os.remove(dest_file)
-    # copy file
-    shutil.copyfile(src_file, dest_file)
-
-
+# 测试
 def test_eval():
     ### --- CONFIG PATH ---
     data_path = os.path.join(ROOT_PATH, p.data_path, p.dataset)
@@ -352,7 +352,6 @@ def test_eval():
             os.makedirs(vis_dir)
 
     # gpu options
-    gpu_ids = [int(id) for id in p.gpus.split(',')]
     os.environ['CUDA_VISIBLE_DEVICES'] = p.gpus
     device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
@@ -431,6 +430,7 @@ def test_eval():
 
 
 if __name__ == '__main__':
+    # 参数解析
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_path', type=str, default='./data',
                         help='The relative path of dataset.')
@@ -474,7 +474,10 @@ if __name__ == '__main__':
                         help='The directory of src need to save in the training.')
 
     p = parser.parse_args()
+    
     if p.phase == 'test':
+        # 测试
         test_eval()
     else:
+        # 训练
         train_eval()

@@ -32,6 +32,7 @@ class VGG16(nn.Module):
         output = self.classifier(output)
         return output
 
+
 def init_feature_extractor(backbone='vgg16', device=torch.device('cuda')):
     feat_extractor = None
     if backbone == 'vgg16':
@@ -88,6 +89,7 @@ def bbox_to_imroi(transform, bboxes, image):
         imroi_data.append(imroi)
     imroi_data = torch.stack(imroi_data)
     return imroi_data
+
 
 def extract_features(detector, feat_extractor, video_file, n_frames=100, n_boxes=19):
     assert os.path.join(video_file), video_file

@@ -25,6 +25,10 @@ echo Logging output to "$LOG"
 
 OUT_DIR=output/UString/vgg16
 
+MODEL_FILE=lib/final_model_a3d_vgg16.pth
+# MODEL_FILE=lib/final_model_crash_vgg16.pth      
+# MODEL_FILE=lib/final_model_dad_vgg16.pth
+
 # experiments on DAD dataset
 case ${PHASE} in
 	train)
@@ -46,7 +50,7 @@ case ${PHASE} in
       	--gpus $GPUS \
       	--visualize \
       	--output_dir $OUT_DIR \
-      	--model_file $OUT_DIR/$DATA/snapshot/final_model.pth
+      	--model_file $MODEL_FILE
     	;;
   	*)
     echo "Invalid argument!"

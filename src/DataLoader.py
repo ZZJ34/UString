@@ -10,7 +10,7 @@ from torch.utils.data import Dataset
 import networkx
 import itertools
 
-
+# 构造数据集 torch Dataset => dad
 class DADDataset(Dataset):
     def __init__(self, data_path, feature, phase='training', toTensor=False, device=torch.device('cuda'), vis=False):
         self.data_path = os.path.join(data_path, feature + '_features')
@@ -66,7 +66,7 @@ class DADDataset(Dataset):
         if self.toTensor:
             features = torch.Tensor(features).to(self.device)         #  100 x 20 x 4096
             labels = torch.Tensor(labels).to(self.device)
-            graph_edges = torch.Tensor(graph_edges).long().to(self.device)
+            graph_edges = torch.Tensor(np.array(graph_edges)).long().to(self.device)
             edge_weights = torch.Tensor(edge_weights).to(self.device)
             toa = torch.Tensor(toa).to(self.device)
 
@@ -76,7 +76,7 @@ class DADDataset(Dataset):
         else:
             return features, labels, graph_edges, edge_weights, toa
 
-
+# 构造数据集 torch Dataset => a3d
 class A3DDataset(Dataset):
     def __init__(self, data_path, feature, phase='train', toTensor=False, device=torch.device('cuda'), vis=False):
         self.data_path = data_path
@@ -159,9 +159,10 @@ class A3DDataset(Dataset):
         f.close()
 
         if self.toTensor:
+
             features = torch.Tensor(features).to(self.device)          #  100 x 20 x 4096
             label_onehot = torch.Tensor(label_onehot).to(self.device)  #  2
-            graph_edges = torch.Tensor(graph_edges).long().to(self.device)
+            graph_edges = torch.Tensor(np.array(graph_edges)).long().to(self.device)
             edge_weights = torch.Tensor(edge_weights).to(self.device)
             toa = torch.Tensor(toa).to(self.device)
 
@@ -173,7 +174,7 @@ class A3DDataset(Dataset):
         else:
             return features, label_onehot, graph_edges, edge_weights, toa
 
-
+# 构造数据集 torch Dataset => crash
 class CrashDataset(Dataset):
     def __init__(self, data_path, feature, phase='train', toTensor=False, device=torch.device('cuda'), vis=False):
         self.data_path = data_path
@@ -262,7 +263,7 @@ class CrashDataset(Dataset):
         if self.toTensor:
             features = torch.Tensor(features).to(self.device)         #  50 x 20 x 4096
             labels = torch.Tensor(labels).to(self.device)
-            graph_edges = torch.Tensor(graph_edges).long().to(self.device)
+            graph_edges = torch.Tensor(np.array(graph_edges)).long().to(self.device)
             edge_weights = torch.Tensor(edge_weights).to(self.device)
             toa = torch.Tensor(toa).to(self.device)
 

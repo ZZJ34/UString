@@ -44,5 +44,5 @@ def split_dad(data_path, dest_path):
 
 if __name__ == '__main__':
     DAD_PATH = './data/dad/features'
-    DEST_PATH = './data/dad/features_split'
+    DEST_PATH = './data/dad/vgg16_features'   # 修改分割后的目录，与读取目录保持一致
     split_dad(DAD_PATH, DEST_PATH)
